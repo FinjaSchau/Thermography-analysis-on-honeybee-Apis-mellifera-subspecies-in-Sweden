@@ -13,4 +13,6 @@ Before being able to execute the files, all packages need to be installed that a
 
 1. preparation.py by using the following command:
 
-`python CODE/python/preparation.py --yr 1 --basedir IMAGES/Orig_Images_Year1_UA --basedir_raw IMAGES/Raw_Images_Year1 --basedir_cross IMAGES/NoCross_Images_Year1`
+- Year 1: `python CODE/python/preparation.py --yr 1 --basedir IMAGES/Orig_Images_Year1_UA --basedir_raw IMAGES/Raw_Images_Year1 --basedir_cross IMAGES/NoCross_Images_Year1`
+
+- Year 2: `python CODE/python/preparation.py --yr 2 --basedir IMAGES/Orig_Images_Year2_UA --basedir_raw IMAGES/Raw_Images_Year2 --basedir_cross IMAGES/NoCross_Images_Year2`
