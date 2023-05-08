@@ -7,7 +7,6 @@ import shutil
 import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib as mpl
-#from PIL import Image
 import glob
 from pathlib import Path
 from PIL import Image, ImageOps, ImageDraw
