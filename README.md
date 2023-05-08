@@ -11,7 +11,7 @@ Before being able to execute the files, all packages need to be installed that a
 
 ## Execution 
 
-1. *preparation.py* by using the following command:
+1. *preparation.py* by using the following commands:
 
 - Year 1: `python CODE/python/preparation.py --yr 1 --basedir IMAGES/Orig_Images_Year1_UA --basedir_raw IMAGES/Raw_Images_Year1 --basedir_crop IMAGES/Cropped_Images_UA_Year1`
 
@@ -21,14 +21,16 @@ Description of the argparse arguments:
 - `--yr`= Year (1 or 2)
 - `--basedir`= path to the original images
 - `--basedir_raw`= path into which the raw images should be saved
-- - `--basedir_crop`= path into which the cropped images should be saved
+- `--basedir_crop`= path into which the cropped images should be saved
 
-2. segmentation.py
+2. *segmentation.py* by using the following commands:
 
 - Year 1: `python CODE/python/segmentation.py --yr 1 --num 5 --basedir_raw IMAGES/Raw_Images_Year1 --basedir_cross IMAGES/NoCross_Images_Year1 --savefolder IMAGES/Segmentation_Images_Year1`
 
 - Year 2: `python CODE/python/segmentation.py --yr 2 --num 5 --basedir_raw IMAGES/Raw_Images_Year2 --basedir_cross IMAGES/NoCross_Images_Year2 --savefolder IMAGES/Segmentation_Images_Year2`
 
-
-
-
+Description of the argparse arguments:
+- `--yr`= Year (1 or 2)
+- `--basedir_raw`= path to the raw images
+- `--basedir_cross`= path into which the images without the cross should be saved
+- --savefolder`= path into which the segmented images should be saved
