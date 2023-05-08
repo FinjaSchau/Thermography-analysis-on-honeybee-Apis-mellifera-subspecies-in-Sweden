@@ -257,7 +257,7 @@ for sideidx, s in enumerate(sides):
       
     # workbook.close()
 #print(bee_centroids)   
-################### create overwiew plots#########################################
+################### create overview plots#########################################
 
 scans = {s:{si:list() for si in sides} for s in specifier}
 
