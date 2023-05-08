@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 
 import functions as fun
-#from functions import *
 import shutil
 import numpy as np
 import matplotlib.pyplot as plt
