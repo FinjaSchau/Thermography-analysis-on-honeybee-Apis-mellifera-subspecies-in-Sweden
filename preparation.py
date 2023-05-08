@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 import functions as fun
 #from functions import *
 import shutil
@@ -16,6 +18,8 @@ import argparse
 
 
 parser = fun.MyParser(description='Process some input values.')
+parser.add_argument('--yr', metavar='Year', type=int, nargs=1,
+                    help='an integer "Year" representing the season (0,1,2...)')
 parser.add_argument('--basedir', metavar='PATH_ORIGINAL', type=str, nargs=1,
                     help='path "PATH_ORIGINAL" to original pictures')
 parser.add_argument('--basedir_raw', metavar='PATH_RAW', type=str, nargs=1,
@@ -24,6 +28,7 @@ parser.add_argument('--basedir_crop', metavar='PATH_CROP', type=str, nargs=1,
                     help='path "PATH_CROP" for cropped .tif images')
 args = parser.parse_args()
 
+year = args.yr[0] 
 basedir = args.basedir[0]
 basedir_raw = args.basedir_raw[0]
 basedir_crop = args.basedir_crop[0]
@@ -103,7 +108,7 @@ for s in sides:
                 axs[j,colidx].matshow(fun.load_temp_bmp(scans[str(f"{spec}")][s][i]))
                 p = Path(scans[str(f"{spec}")][s][i])
                 axs[j,colidx].annotate(p.parent.name,(0, 0))
-    path = Path(basedir_raw).parent.name+f"/{s}_Year2_UA.pdf"
+    path = Path(basedir_raw).parent.name+f"/{s}_Year{year}_UA.pdf"
     if os.path.exists(path):
         os.remove(path)
         fig.savefig(path)

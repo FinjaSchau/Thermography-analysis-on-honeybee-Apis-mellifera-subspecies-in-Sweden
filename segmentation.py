@@ -3,12 +3,11 @@
 #python CODE/python/segmentation.py --yr 1 --num 5 --basedir_raw IMAGES/Raw_Images_Year1 --basedir_cross IMAGES/NoCross_Images_Year1 --savefolder IMAGES/Segmentation_Images_Year1
 
 import functions as fun
-import functions as fun
 import shutil
 import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib as mpl
-from PIL import Image
+#from PIL import Image
 import glob
 from pathlib import Path
 from PIL import Image, ImageOps, ImageDraw
@@ -95,18 +94,18 @@ scans.pop("")
 
 l = sorted(list(fun.getList(scans)))
 
-bee_centroids = [[[None for i in range(5)] for j in range(len(l))] for sideidx in range(len(sides))]
+#bee_centroids = [[[None for i in range(5)] for j in range(len(l))] for sideidx in range(len(sides))]
 
-header_data = ["Locality", "Side", "Subspecies", "Name", "Class", "Year", "Month", "x_value", "y_value"]
+#header_data = ["Locality", "Side", "Subspecies", "Name", "Class", "Year", "Month", "x_value", "y_value"]
 #print(bee_centroids)
 ########################find and fill the cross, segmentation######################################
 for sideidx, s in enumerate(sides):
-    workbook = xlsxwriter.Workbook(f"Centroids_{s}_seg{num}_year{year}.xlsx")
-    worksheet = workbook.add_worksheet("Centroids")
-    for col_num, data in enumerate(header_data):
-        worksheet.write(0, col_num, data)
-    row = 1
-    col = 0
+    #workbook = xlsxwriter.Workbook(f"Centroids_{s}_seg{num}_year{year}.xlsx")
+    #worksheet = workbook.add_worksheet("Centroids")
+    #for col_num, data in enumerate(header_data):
+    #    worksheet.write(0, col_num, data)
+    #row = 1
+    #col = 0
     for j in range(0,len(l)):
         spec = l[j]
         for i in range(0,5):
@@ -155,41 +154,41 @@ for sideidx, s in enumerate(sides):
                     boundaries.append(np.nonzero(np.convolve(value_class, np.array([1,-1]), "valid"))[0][k]+1)
                 boundaries.append(2**16)
                 #print(boundaries)
-                #print(boundaries)
-                # boundaries = [0, ]
-                # for i in range(2**16-2):
-                    # if value_class[i] != value_class[i+1]:
-                        # boundaries.append(i+1)
-                # boundaries.append(2**16)
-                #boundaries = np.array(boundaries)
-                #print(boundaries)             
-                #pairs = np.stack([uniques, classes], axis=-1)
-                #centroids  = classifier.cluster_centers_ 
-                #boundaries = np.array(sorted(np.round(centroids).flatten())).astype("int")
+
+                boundaries = [0, ]
+                for i in range(2**16-2):
+                    if value_class[i] != value_class[i+1]:
+                        boundaries.append(i+1)
+                boundaries.append(2**16)
+                boundaries = np.array(boundaries)
+                print(boundaries)             
+                pairs = np.stack([uniques, classes], axis=-1)
+                centroids  = classifier.cluster_centers_ 
+                boundaries = np.array(sorted(np.round(centroids).flatten())).astype("int")
  
                 segments = fun.get_segmentation(I, boundaries)
                 
                 fused = fun.fuse_segments(segments, wanted_values)
 
-                # #exclude top and bottom
-                # cutTop   = cross[0] - shift_top
-                # cutEnd   = cross[0] + shift_end
-                # fused[1:cutTop-1,:] = (wanted_values[0]+ wanted_values[1])/2
-                # fused[cutEnd+1:,:] = (wanted_values[0]+ wanted_values[1])/2
+                #exclude top and bottom
+                cutTop   = cross[0] - shift_top
+                cutEnd   = cross[0] + shift_end
+                fused[1:cutTop-1,:] = (wanted_values[0]+ wanted_values[1])/2
+                fused[cutEnd+1:,:] = (wanted_values[0]+ wanted_values[1])/2
 
-                # #exclude left and right
-                # cutLeft  = cross[1] - shift_left
-                # cutRight = cross[1] + shift_right
-                # fused[:,1:cutLeft-1] = (wanted_values[0]+ wanted_values[1])/2
-                # fused[:,cutRight+1:] = (wanted_values[0]+ wanted_values[1])/2
+                #exclude left and right
+                cutLeft  = cross[1] - shift_left
+                cutRight = cross[1] + shift_right
+                fused[:,1:cutLeft-1] = (wanted_values[0]+ wanted_values[1])/2
+                fused[:,cutRight+1:] = (wanted_values[0]+ wanted_values[1])/2
                 
-                # #handle
-                # handleTop = cross[0] - 55
-                # handleButtom = cross[0] - 25
-                # handleLeft = cross[1] - 25
-                # handleRight = cross[1] + 25
+                #handle
+                handleTop = cross[0] - 55
+                handleButtom = cross[0] - 25
+                handleLeft = cross[1] - 25
+                handleRight = cross[1] + 25
                 
-                # fused[handleTop:handleButtom, handleLeft:handleRight] = (wanted_values[1]+ wanted_values[2])/2
+                fused[handleTop:handleButtom, handleLeft:handleRight] = (wanted_values[1]+ wanted_values[2])/2
                 
                 bees = segments[-1,...] #get last segment
                 
@@ -207,56 +206,56 @@ for sideidx, s in enumerate(sides):
                 img.save(Path(save_path).with_suffix('.tif'))
                 
                 
-                spec_name = spec.split("_")
-                name = spec_name[0]
-                species = spec_name[1]
+    #             spec_name = spec.split("_")
+    #             name = spec_name[0]
+    #             species = spec_name[1]
                 
-                if year == 1:
-                    if i == 0:
-                        month = "November"
-                        yr = "2020"
-                    if i == 1:
-                        month = "December"
-                        yr = "2020"
-                    if i == 2:
-                        month = "January"
-                        yr = "2021"
-                    if i == 3:
-                        month = "February"
-                        yr = "2021"
-                    if i == 4:
-                        month = "March"
-                        yr = "2021"
+    #             if year == 1:
+    #                 if i == 0:
+    #                     month = "November"
+    #                     yr = "2020"
+    #                 if i == 1:
+    #                     month = "December"
+    #                     yr = "2020"
+    #                 if i == 2:
+    #                     month = "January"
+    #                     yr = "2021"
+    #                 if i == 3:
+    #                     month = "February"
+    #                     yr = "2021"
+    #                 if i == 4:
+    #                     month = "March"
+    #                     yr = "2021"
 
                         
-                if year == 2:
-                    if i == 0:
-                        month = "November"
-                        yr = "2021"
-                    elif i == 1:
-                        month = "December"
-                        yr = "2021"
-                    elif i == 2:
-                        month = "January"
-                        yr = "2022"
-                    elif i == 3:
-                        month = "February"
-                        yr = "2022"
-                    elif i == 4:
-                        month = "March"
-                        yr = "2022"
+    #             if year == 2:
+    #                 if i == 0:
+    #                     month = "November"
+    #                     yr = "2021"
+    #                 elif i == 1:
+    #                     month = "December"
+    #                     yr = "2021"
+    #                 elif i == 2:
+    #                     month = "January"
+    #                     yr = "2022"
+    #                 elif i == 3:
+    #                     month = "February"
+    #                     yr = "2022"
+    #                 elif i == 4:
+    #                     month = "March"
+    #                     yr = "2022"
 
                         
-                worksheet.write(row, col + 1, s)
-                worksheet.write(row, col + 2, species)
-                worksheet.write(row, col + 3, name)
-                worksheet.write(row, col + 5, yr)
-                worksheet.write(row, col + 6, month)
-                worksheet.write(row, col + 7, bees_centroid[1])
-                worksheet.write(row, col + 8, bees_centroid[0])
-                row += 1
+    #             worksheet.write(row, col + 1, s)
+    #             worksheet.write(row, col + 2, species)
+    #             worksheet.write(row, col + 3, name)
+    #             worksheet.write(row, col + 5, yr)
+    #             worksheet.write(row, col + 6, month)
+    #             worksheet.write(row, col + 7, bees_centroid[1])
+    #             worksheet.write(row, col + 8, bees_centroid[0])
+    #             row += 1
       
-    workbook.close()
+    # workbook.close()
 #print(bee_centroids)   
 ################### create overwiew plots#########################################
 
