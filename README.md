@@ -1,6 +1,6 @@
 # Thermography-analysis-on-honeybee-Apis-mellifera-subspecies-in-Sweden
 
-[![DOI](https://zenodo.org/badge/636844069.svg)](https://zenodo.org/badge/latestdoi/636844069)
+
 
 This file explains in which order the python files need to be executed and how.
 
