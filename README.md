@@ -20,8 +20,8 @@ Before being able to execute the files, all packages need to be installed that a
 Description of the argparse arguments:
 - `--yr`= Year (1 or 2)
 - `--basedir`= path to the original images
-- `--basedir_raw`= path into which the raw images should be saved
-- `--basedir_crop`= path into which the cropped images should be saved
+- `--basedir_raw`= path into which the cropped raw images should be saved
+- `--basedir_crop`= path into which the cropped .tif images should be saved
 
 2. *segmentation.py* by using the following commands:
 
@@ -32,5 +32,5 @@ Description of the argparse arguments:
 Description of the argparse arguments:
 - `--yr`= Year (1 or 2)
 - `--basedir_raw`= path to the raw images
-- `--basedir_cross`= path into which the images without the cross should be saved
-- --savefolder`= path into which the segmented images should be saved
+- `--basedir_cross`= path into which the .tif images without the cross should be saved
+- --savefolder`= path into which the segmented .tif images should be saved
