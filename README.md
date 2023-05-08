@@ -1,15 +1,15 @@
-## Thermography-analysis-on-honeybee-Apis-mellifera-subspecies-in-Sweden
+# Thermography-analysis-on-honeybee-Apis-mellifera-subspecies-in-Sweden
 
 This file explains in which order the python files need to be executed and how.
 
-# Prerequisites
+## Prerequisites
 The program language python needs to be installed.
 Further, the file function.py needs to be saved in the same directory as preparation.py and segmentation.py.
 In addition, the folders Orig_Images_Year1_UA and Orig_Images_Year2_UA (get the folder from LINK) need to be present with 5 subfolders each (months).
 
 Before being able to execute the files, all packages need to be installed that are mentioned in the Import sections.
 
-# Execution 
+## Execution 
 
 1. preparation.py by using the following command:
 
